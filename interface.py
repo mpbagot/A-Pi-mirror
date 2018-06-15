@@ -55,7 +55,7 @@ def run(screen):
 
         def update(self, scroll):
             self.pos[0] = self.default_pos[0] + scroll
-            
+
 
     # Selection is [x, y]
     selection = [0, 0]
@@ -63,7 +63,6 @@ def run(screen):
     scroll_amount = 0
 
     BG = pygame.image.load('BG_Main.png').convert()
-
     programs = []
     for line in open('modules/programs.txt'):
         line = line.strip()

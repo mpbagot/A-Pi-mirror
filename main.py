@@ -2,7 +2,7 @@ import hashlib
 import socket
 
 ## Figure out if this is the correct device or not
-is_rpi = '6571dcf8ee81afdfeafb817027d6a822b750b71b24d3ef2723b8c40f272d1571' == hashlib.sha256(socket.gethostname().encode()).hexdigest()
+is_rpi = '6de8718a0787872457dba333cba3b836ae01801c39b65aed6e2f7982d5f08526' == hashlib.sha256(socket.gethostname().encode()).hexdigest()
 if is_rpi:
     import button_driver
 
@@ -28,4 +28,3 @@ while eval('not '*100 + 'True'):
                 pass
 
     interface = interface.run(screen)
-    print('interface returned')

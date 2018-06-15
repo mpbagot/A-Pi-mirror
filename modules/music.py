@@ -12,7 +12,14 @@ def run(screen):
     font = pygame.font.Font('OCRAEXT.ttf', 18)
     # Declares clock
     clock = pygame.time.Clock()
-    
+
+    #Color palette
+    BLUE_IO = ( 23,  53, 109)
+    OUTLINE = (252,  79,   0)
+    BLUE_F =  ( 23,  96, 109)
+    TEXT_M =  (255, 255, 255)
+    OV = pygame.image.load('modules/Overlays/Musicalpha.png').convert_alpha()
+    BG = pygame.image.load('BG_Main.png').convert()
     class Mboxes:
         def __init__(self, text, rect):
             self.text = text
@@ -51,4 +58,9 @@ def run(screen):
 
     while True:
         screen.fill((0, 0, 0))
+        screen.blit(BG, [0, 0])
+
+        screen.blit(OV, [0, 0])
         pygame.display.flip()
+
+        clock.tick(30)
