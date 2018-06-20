@@ -2,14 +2,16 @@
 import RPi.GPIO as GPIO
 import pygame
 
+GPIO.setmode(GPIO.BCM)
+
 # Define the pin numbers
-UP_PIN = None
-DOWN_PIN = None
-LEFT_PIN = None
-RIGHT_PIN = None
-HOME_PIN = None
-BACK_PIN = None
-ENTER_PIN = None
+UP_PIN = 10
+DOWN_PIN = 9
+LEFT_PIN = 11
+RIGHT_PIN = 0
+HOME_PIN = 8
+BACK_PIN = 7
+ENTER_PIN = 1
 
 # Define the keybind numbers for the Pygame event
 B_UP = pygame.K_UP
@@ -44,12 +46,7 @@ def shutdown():
     '''
     GPIO.cleanup()
 
-# Add event hooks to fire pygame events
-GPIO.add_event_detect(UP_PIN, GPIO.RISING, callback=fire_keydown, bouncetime=100)
-GPIO.add_event_detect(DOWN_PIN, GPIO.RISING, callback=fire_keydown, bouncetime=100)
-GPIO.add_event_detect(LEFT_PIN, GPIO.RISING, callback=fire_keydown, bouncetime=100)
-GPIO.add_event_detect(RIGHT_PIN, GPIO.RISING, callback=fire_keydown, bouncetime=100)
-
-GPIO.add_event_detect(HOME_PIN, GPIO.RISING, callback=fire_keydown, bouncetime=100)
-GPIO.add_event_detect(BACK_PIN, GPIO.RISING, callback=fire_keydown, bouncetime=100)
-GPIO.add_event_detect(ENTER_PIN, GPIO.RISING, callback=fire_keydown, bouncetime=100)
+# Setup the pull-up resistors and add event hooks to fire pygame events
+for pin_id in buttons:
+    GPIO.setup(pin_id, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.add_event_detect(pin_id, GPIO.RISING, callback=fire_keydown, bouncetime=100)

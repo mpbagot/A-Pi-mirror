@@ -3,13 +3,14 @@ import math
 from time import *
 import io
 import sys
+import home
 
 NAME = 'Music'
 
 def run(screen):
 
     # Font type and size
-    font = pygame.font.Font('OCRAEXT.ttf', 18)
+    font = pygame.font.Font('OCRAEXT.ttf', 9)
     # Declares clock
     clock = pygame.time.Clock()
 
@@ -60,7 +61,7 @@ def run(screen):
         screen.fill((0, 0, 0))
         screen.blit(BG, [0, 0])
 
-        screen.blit(OV, [0, 0])
+
         pygame.display.flip()
 
         clock.tick(30)
