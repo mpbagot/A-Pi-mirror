@@ -49,4 +49,4 @@ def shutdown():
 # Setup the pull-up resistors and add event hooks to fire pygame events
 for pin_id in buttons:
     GPIO.setup(pin_id, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.add_event_detect(pin_id, GPIO.RISING, callback=fire_keydown, bouncetime=100)
+    GPIO.add_event_detect(pin_id, GPIO.RISING, callback=fire_keydown, bouncetime=300)

@@ -2,12 +2,13 @@ import pygame
 from time import *
 import io
 import sys
+sys.path.append('../')
 import home
 
 NAME = 'INSERT MODULE NAME HERE'
 
 def run(screen):
-
+    pygame.init()
     # Font type and size
     font = pygame.font.Font('OCRAEXT.ttf', 9)
     # Declares clock

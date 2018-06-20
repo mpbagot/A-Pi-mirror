@@ -2,7 +2,7 @@ import hashlib
 import socket
 
 ## Figure out if this is the correct device or not
-is_rpi = '6de8718a0787872457dba333cba3b836ae01801c39b65aed6e2f7982d5f08526' == hashlib.sha256(socket.gethostname().encode()).hexdigest()
+is_rpi = '101c18234e9c936f8069b8de1a9e959ad0ba4af19a0cc8adb3f4c62f8de8ff1a' == hashlib.sha256(socket.gethostname().encode()).hexdigest()
 if is_rpi:
     import button_driver
 
@@ -23,8 +23,5 @@ while eval('not '*100 + 'True'):
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_h:
-                pass
 
     interface = interface.run(screen)

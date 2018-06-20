@@ -3,23 +3,23 @@ import math
 from time import *
 import io
 import sys
+sys.path.append('../')
 import home
 
 NAME = 'Music'
 
 def run(screen):
-
+    pygame.init()
     # Font type and size
     font = pygame.font.Font('OCRAEXT.ttf', 9)
     # Declares clock
     clock = pygame.time.Clock()
-
+    scroll = 0
     #Color palette
     BLUE_IO = ( 23,  53, 109)
     OUTLINE = (252,  79,   0)
     BLUE_F =  ( 23,  96, 109)
     TEXT_M =  (255, 255, 255)
-    OV = pygame.image.load('modules/Overlays/Musicalpha.png').convert_alpha()
     BG = pygame.image.load('BG_Main.png').convert()
     class Mboxes:
         def __init__(self, text, rect):
