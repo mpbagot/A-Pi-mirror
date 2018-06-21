@@ -1,17 +1,15 @@
 NAME = 'main'
 from time import *
+import pygame
+import math
+import io
+import sys
+import importlib
 
-def run(screen):
-
-    import pygame
-    import math
-    import io
-    import sys
-    import importlib
-
+def setup():
     pygame.init()
-
-
+    global scroll_amount
+    scroll_amount = 0
     # Font type and size
     font = pygame.font.Font('OCRAEXT.ttf', 18)
     # Declares clock
@@ -85,50 +83,49 @@ def run(screen):
             box.module = programs[p+1][1]
             column.append(box)
         boxes.append(column)
+def step(screen, events):
+    for event in events:
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                selection[1] -= 1
+                selection[1] %= 2
+            if event.key == pygame.K_DOWN:
+                selection[1] += 1
+                selection[1] %= 2
+            if event.key == pygame.K_LEFT:
+                selection[0] -= 1
+                selection[0] %= len(boxes)
+            if event.key == pygame.K_RIGHT:
+                selection[0] += 1
+                selection[0] %= len(boxes)
+            if event.key == pygame.K_RETURN:
+                # print('meh')
+                return boxes[selection[0]][selection[1]].module
+
+            if len(boxes[selection[0]]) == 1 and selection[1]:
+                selection[1] = 0
 
 
-    while not False and True and 1 and not 0 and 1.0 and not 0.0 and not '' and 'hello' and ['meh'] and not [] and ... and eval('not '*100 + 'True'):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    selection[1] -= 1
-                    selection[1] %= 2
-                if event.key == pygame.K_DOWN:
-                    selection[1] += 1
-                    selection[1] %= 2
-                if event.key == pygame.K_LEFT:
-                    selection[0] -= 1
-                    selection[0] %= len(boxes)
-                if event.key == pygame.K_RIGHT:
-                    selection[0] += 1
-                    selection[0] %= len(boxes)
-                if event.key == pygame.K_RETURN:
-                    # print('meh')
-                    return boxes[selection[0]][selection[1]].module
-
-                if len(boxes[selection[0]]) == 1 and selection[1]:
-                    selection[1] = 0
-
-
-        screen.fill((0, 0, 0))
+    screen.fill((0, 0, 0))
         # if box.pos[0] > 190*(len(column)):
         #     box.pos[0] = 190*(len(column))
 
-        if scroll_amount > 0:
-            scroll_amount = 0
-        screen.blit(BG, [0, 0])
+    if scroll_amount > 0:
+        scroll_amount = 0
+    screen.blit(BG, [0, 0])
         # Draw boxes
-        scroll_amount = -190 * selection[0]
-        for x, column in enumerate(boxes):
-            for y, box in enumerate(column):
-                box.update(scroll_amount)
-                box.draw([x, y] == selection)
-                screen.blit(box.box, box.pos)
+    scroll_amount = -190 * selection[0]
+    for x, column in enumerate(boxes):
+        for y, box in enumerate(column):
+            box.update(scroll_amount)
+            box.draw([x, y] == selection)
+            screen.blit(box.box, box.pos)
 
-        pygame.display.flip()
+    pygame.display.flip()
 
-        clock.tick(30)
+    clock.tick(30)
+    return True
