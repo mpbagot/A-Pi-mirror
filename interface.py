@@ -6,61 +6,62 @@ import io
 import sys
 import importlib
 
+class Box:
+    def __init__(self, text, rect):#x, y, w, h):
+        self.text = text
+        self.box = pygame.Surface(rect[2:])
+        self.pos = rect[:2]
+        self.default_pos = rect[:2]
+        self.module = None
+
+    def draw(self, selected):
+        if selected:
+            self.box.fill(BLUE_F)
+
+            text = font.render(self.text, True, TEXT_M)
+            text_pos = [(self.box.get_size()[a] - text.get_size()[a])//2 for a in [0, 1]]
+            self.box.blit(text, text_pos)
+
+            # Border
+            pygame.draw.rect(self.box, OUTLINE, self.box.get_rect(), 3)
+        else:
+            self.box.fill(BLUE_F)
+
+            text = font.render(self.text, True, TEXT_M)
+            text_pos = [(self.box.get_size()[a] - text.get_size()[a])//2 for a in [0, 1]]
+            self.box.blit(text, text_pos)
+
+            # Border
+            pygame.draw.rect(self.box, BLUE_IO, self.box.get_rect(), 3)
+
+    def update(self, scroll):
+        self.pos[0] = self.default_pos[0] + scroll
+
+pygame.init()
+
+# Font type and size
+font = pygame.font.Font('OCRAEXT.ttf', 18)
+# Declares clock
+clock = pygame.time.Clock()
+
+#Color palette
+BLUE_IO = ( 23,  53, 109)
+OUTLINE = (252,  79,   0)
+BLUE_F =  ( 23,  96, 109)
+TEXT_M =  (255, 255, 255)
+
+BG = pygame.image.load('BG_Main.png').convert()
+
 def setup():
-    pygame.init()
+    global boxes
+    global selection
     global scroll_amount
+
     scroll_amount = 0
-    # Font type and size
-    font = pygame.font.Font('OCRAEXT.ttf', 18)
-    # Declares clock
-    clock = pygame.time.Clock()
-
-    #Color palette
-    BLUE_IO = ( 23,  53, 109)
-    OUTLINE = (252,  79,   0)
-    BLUE_F =  ( 23,  96, 109)
-    TEXT_M =  (255, 255, 255)
-
-    class Box:
-        def __init__(self, text, rect):#x, y, w, h):
-            self.text = text
-            self.box = pygame.Surface(rect[2:])
-            self.pos = rect[:2]
-            self.default_pos = rect[:2]
-            self.module = None
-
-        def draw(self, selected):
-            if selected:
-                self.box.fill(BLUE_F)
-
-                text = font.render(self.text, True, TEXT_M)
-                text_pos = [(self.box.get_size()[a] - text.get_size()[a])//2 for a in [0, 1]]
-                self.box.blit(text, text_pos)
-
-                # Border
-                pygame.draw.rect(self.box, OUTLINE, self.box.get_rect(), 3)
-            else:
-                self.box.fill(BLUE_F)
-
-                text = font.render(self.text, True, TEXT_M)
-                text_pos = [(self.box.get_size()[a] - text.get_size()[a])//2 for a in [0, 1]]
-                self.box.blit(text, text_pos)
-
-                # Border
-                pygame.draw.rect(self.box, BLUE_IO, self.box.get_rect(), 3)
-
-
-
-        def update(self, scroll):
-            self.pos[0] = self.default_pos[0] + scroll
-
 
     # Selection is [x, y]
     selection = [0, 0]
 
-    scroll_amount = 0
-
-    BG = pygame.image.load('BG_Main.png').convert()
     programs = []
     for line in open('modules/programs.txt'):
         line = line.strip()
@@ -83,7 +84,13 @@ def setup():
             box.module = programs[p+1][1]
             column.append(box)
         boxes.append(column)
+
+
 def step(screen, events):
+    global boxes
+    global selection
+    global scroll_amount
+    
     for event in events:
         if event.type == pygame.QUIT:
             pygame.quit()

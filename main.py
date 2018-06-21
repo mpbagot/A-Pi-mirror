@@ -12,12 +12,14 @@ from time import *
 import io
 import sys
 import importlib
-import interface as home_interface
 
 pygame.init()
 
-new_interface = interface = home_interface
 screen = pygame.display.set_mode((480, 270))#, pygame.FULLSCREEN)
+
+import interface as home_interface
+new_interface = home_interface
+interface = None
 
 while eval('not '*100 + 'True'):
     events = list(pygame.event.get())
@@ -39,3 +41,5 @@ while eval('not '*100 + 'True'):
     result = interface.step(screen, events)
     if result is False:
         new_interface = home_interface
+    elif result not in [None, True]:
+        new_interface = result
