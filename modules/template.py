@@ -3,7 +3,7 @@ from time import *
 import io
 import sys
 sys.path.append('../')
-import home
+
 
 NAME = 'INSERT MODULE NAME HERE'
 

@@ -23,5 +23,8 @@ while eval('not '*100 + 'True'):
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
+        if event.type == pygame.KEYDOWN:
+            # Home button
+            if event.key == pygame.K_h:
+                interface
     interface = interface.run(screen)

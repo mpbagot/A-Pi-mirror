@@ -19,7 +19,7 @@ B_DOWN = pygame.K_DOWN
 B_LEFT = pygame.K_LEFT
 B_RIGHT = pygame.K_RIGHT
 B_HOME = pygame.K_h
-B_BACK = pygame.K_b
+B_BACK = pygame.K_BACKSPACE
 B_ENTER = pygame.K_RETURN
 
 # Create a binding between the two

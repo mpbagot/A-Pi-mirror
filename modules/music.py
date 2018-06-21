@@ -4,7 +4,7 @@ from time import *
 import io
 import sys
 sys.path.append('../')
-import home
+
 
 NAME = 'Music'
 
@@ -58,6 +58,24 @@ def run(screen):
 
 
     while True:
+        for event in pygame.event.get():
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    pass
+                if event.key == pygame.K_DOWN:
+                    pass
+                if event.key == pygame.K_LEFT:
+                    pass
+                if event.key == pygame.K_RIGHT:
+                    pass
+                # Enter button
+                if event.key == pygame.K_RETURN:
+                    pass
+                # Back button
+                if event.key == pygame.K_BACKSPACE:
+                    pass
+
         screen.fill((0, 0, 0))
         screen.blit(BG, [0, 0])
 
