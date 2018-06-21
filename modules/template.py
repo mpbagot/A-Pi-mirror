@@ -41,6 +41,10 @@ def run(screen):
                 # Back button
                 if event.key == pygame.K_BACKSPACE:
                     pass
+                # Home button
+                if event.key == pygame.K_h:
+                    pass
+
         screen.fill((0, 0, 0))
         screen.blit(BG, [0, 0])
 

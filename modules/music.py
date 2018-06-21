@@ -21,7 +21,7 @@ def run(screen):
     BLUE_F =  ( 23,  96, 109)
     TEXT_M =  (255, 255, 255)
     BG = pygame.image.load('BG_Main.png').convert()
-    class Mboxes:
+    class Mbox:
         def __init__(self, text, rect):
             self.text = text
             self.box = pygame.Surface(rect[2:])
@@ -75,7 +75,8 @@ def run(screen):
                 # Back button
                 if event.key == pygame.K_BACKSPACE:
                     pass
-
+                if event.key == pygame.K_h:
+                    interface.run(screen)
         screen.fill((0, 0, 0))
         screen.blit(BG, [0, 0])
 
