@@ -30,7 +30,6 @@ class helpbox:
         text = font.render(self.text, True, TEXT_M)
         text_pos = [self.box.get_size()[a] - text.get_size()[a]//2 for a in [0, 1]]
         self.box.blit(text, text_pos)
-        
 
 def setup():
     pass
