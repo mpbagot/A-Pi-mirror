@@ -2,7 +2,7 @@ import pygame
 import math
 from time import *
 import io
-import sys
+import sys, os
 sys.path.append('../')
 
 class Mbox:
@@ -47,17 +47,33 @@ OUTLINE = (252,  79,   0)
 BLUE_F =  ( 23,  96, 109)
 TEXT_M =  (255, 255, 255)
 BG = pygame.image.load('BG_Main.png').convert()
+OV = pygame.image.load('modules/overlays/Musicalpha.png').convert_alpha()
 
 
 NAME = 'Music'
 
 def setup():
     global scroll
+    global mboxes
+    global s_selection
+    global volume
+    volume = 0
     scroll = 0
+    selection = [0]
+    mboxes = []
+    songs = []
+    path = "modules/music_data"
+    direc = os.listdir(path)
+    for file in direc:
+        songs.append(file)
+
 
 def step(screen, events):
     global scroll
-    
+    global mboxes
+    global s_selection
+    global volume
+
     for event in events:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
@@ -77,8 +93,12 @@ def step(screen, events):
 
     screen.fill((0, 0, 0))
     screen.blit(BG, [0, 0])
+    for y, box in enumerate(row):
+        mbox.update(scroll_amount)
+        mbox.draw([y] == selection)
+        screen.blit(mbox.box, mbox.pos)
 
-
+    screen.blit(OV, [0, 0])
     pygame.display.flip()
 
     clock.tick(30)

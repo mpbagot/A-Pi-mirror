@@ -1,4 +1,4 @@
-radio
+help
 music
 stub1
 stub2
