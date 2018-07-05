@@ -49,7 +49,7 @@ OUTLINE = (252,  79,   0)
 BLUE_F =  ( 23,  96, 109)
 TEXT_M =  (255, 255, 255)
 BG = pygame.image.load('BG_Main.png').convert()
-OV = pygame.image.load('modules/overlays/Musicalpha.png').convert_alpha()
+OV = pygame.image.load('modules/Overlays/Musicalpha.png').convert_alpha()
 
 
 NAME = 'Music'
