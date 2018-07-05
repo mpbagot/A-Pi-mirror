@@ -28,9 +28,10 @@ class helpbox:
 
     def draw(self):
         self.box.fill(pygame.Color(0, 0, 0, 0))
-        text = font.render(self.text, True, TEXT_M)
-        text_pos = [(self.box.get_size()[a] - text.get_size()[a])//2 for a in [0, 1]]
-        self.box.blit(text, text_pos)
+        for l, line in enumerate(self.text.split('\n')):
+            text = font.render(line, True, TEXT_M)
+            text_pos = [(self.box.get_width() - text.get_width())//2, 10 + 12 * l]
+            self.box.blit(text, text_pos)
 
 def setup():
     global box
