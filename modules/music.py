@@ -67,7 +67,7 @@ def setup():
     path = "modules/music_data"
     direc = os.listdir(path)
     for file in direc:
-        if file.split('.')[-1] in ['mp3', 'wav', 'ogg']:
+        if file.split('.')[-1] in ['wav', 'ogg']:
             songs.append(file)
 
     for s in range(len(songs)):
@@ -116,10 +116,10 @@ def step(screen, events):
 
     screen.fill((0, 0, 0))
     screen.blit(BG, [0, 0])
-    # for y, box in enumerate(column):
-    #     mbox.update(scroll_amount)
-    #     mbox.draw([y] == selection)
-    #     screen.blit(mbox.box, mbox.pos)
+    for y, box in enumerate(mboxes):
+        Mbox.update(scroll)
+        Mbox.draw([y] == selection)
+        screen.blit(mbox.box, mbox.pos)
 
     screen.blit(OV, [0, 0])
     pygame.display.flip()

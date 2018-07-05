@@ -6,7 +6,7 @@ sys.path.append('../')
 
 pygame.init()
 # Font type and size
-font = pygame.font.Font('OCRAEXT.ttf', 50)
+font = pygame.font.Font('OCRAEXT.ttf', 10)
 # Declares clock
 clock = pygame.time.Clock()
 
@@ -18,7 +18,7 @@ TEXT_M =  (255, 255, 255)
 
 # Main background
 BG = pygame.image.load('BG_Main.png').convert()
-
+txt = "Welcome to the A-Pi \n This system comes standard with a music player module. \n The music player supports only \'WAV\' and/or \'OGG\' formats."
 NAME = 'Help'
 class helpbox:
     def __init__(self, text, rect):
@@ -33,8 +33,8 @@ class helpbox:
         self.box.blit(text, text_pos)
 
 def setup():
-    global box    
-    box = helpbox("a label!", [60, 45, 360, 180])
+    global box
+    box = helpbox(txt, [60, 45, 360, 180])
 
 def step(screen, events):
     global box
