@@ -5,6 +5,8 @@ import io
 import sys, os
 sys.path.append('../')
 
+CHANNEL = pygame.mixer.Channel(0)
+
 class Mbox:
     def __init__(self, text, rect):
         self.text = text
@@ -55,7 +57,7 @@ NAME = 'Music'
 def setup():
     global scroll
     global mboxes
-    global s_selection
+    global selection
     global volume
     volume = 0
     scroll = 0
@@ -65,38 +67,59 @@ def setup():
     path = "modules/music_data"
     direc = os.listdir(path)
     for file in direc:
-        songs.append(file)
+        if file.split('.')[-1] in ['mp3', 'wav', 'ogg']:
+            songs.append(file)
+
+    for s in range(len(songs)):
+        #
+        box = Mbox(songs[s], [0, s*20, 50, 20])
+        #
+        box.file = pygame.mixer.Sound('{}/{}'.format(path, songs[s]))
+        mboxes.append(box)
 
 
 def step(screen, events):
     global scroll
     global mboxes
-    global s_selection
+    global selection
     global volume
 
     for event in events:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                pass
+                selection[0] -= 1
+                selection[0] %= len(mboxes)
+
             if event.key == pygame.K_DOWN:
-                pass
+                selection[0] += 1
+                selection[0] %= len(mboxes)
+
             if event.key == pygame.K_LEFT:
-                pass
+                volume += 0.05
+
             if event.key == pygame.K_RIGHT:
-                pass
+                volume -= 0.05
+
             # Enter button
             if event.key == pygame.K_RETURN:
                 pass
+
             # Back button
             if event.key == pygame.K_BACKSPACE:
                 pass
 
+    if volume < 0:
+        volume = 0
+    if volume > 1:
+        volume = 1
+
+
     screen.fill((0, 0, 0))
     screen.blit(BG, [0, 0])
-    for y, box in enumerate(row):
-        mbox.update(scroll_amount)
-        mbox.draw([y] == selection)
-        screen.blit(mbox.box, mbox.pos)
+    # for y, box in enumerate(column):
+    #     mbox.update(scroll_amount)
+    #     mbox.draw([y] == selection)
+    #     screen.blit(mbox.box, mbox.pos)
 
     screen.blit(OV, [0, 0])
     pygame.display.flip()

@@ -67,6 +67,7 @@ def setup():
         line = line.strip()
         try:
             module = importlib.import_module("modules."+line)
+            module = importlib.reload(module)
             print(module)
             programs.append((module.NAME, module))
         except ImportError:
