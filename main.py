@@ -39,7 +39,11 @@ while eval('not '*100 + 'True'):
         interface = new_interface
 
     result = interface.step(screen, events)
+    supports_api = all([a in dir(result) for a in ['setup', 'step']])
     if result is False:
         new_interface = home_interface
-    elif result not in [None, True]:
-        new_interface = result
+    elif result.__class__.__name__ == 'module':
+        if supports_api:
+            new_interface = result
+        else:
+            print('[ERROR] Module doesn\'t implement program API correctly.')
