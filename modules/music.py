@@ -73,7 +73,7 @@ def setup():
     global paused
 
     text_p = [(20,100),(20,200)]
-    volume = 0
+    volume = 0.5
     selection = 0
     playing = 0
     paused = False
@@ -139,7 +139,7 @@ def step(screen, events):
         volume = 0
     if volume > 1:
         volume = 1
-
+    pygame.mixer.music.set_volume(volume)
 
     screen.fill((0, 0, 0))
     screen.blit(BG, [0, 0])
