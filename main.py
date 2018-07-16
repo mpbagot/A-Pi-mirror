@@ -19,6 +19,8 @@ pygame.init()
 display = pygame.display.set_mode(pygame.display.list_modes()[0], pygame.FULLSCREEN)
 screen = pygame.Surface((480, 270))
 
+pygame.mouse.set_visible(False)
+
 import interface as home_interface
 new_interface = home_interface
 interface = None
