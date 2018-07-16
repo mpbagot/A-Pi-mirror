@@ -46,6 +46,4 @@ def step(screen, events):
     box.draw()
     screen.blit(box.box, box.pos)
 
-    pygame.display.flip()
-
     clock.tick(30)

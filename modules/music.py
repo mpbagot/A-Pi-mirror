@@ -179,6 +179,4 @@ def step(screen, events):
         p_txt = font1.render(play_info, True, TEXT_M)
         screen.blit(p_txt, text_p[1])
 
-    pygame.display.flip()
-
     clock.tick(30)

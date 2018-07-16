@@ -46,6 +46,4 @@ def run(screen):
         Screen contents go here
         """
 
-        pygame.display.flip()
-
         clock.tick(30)

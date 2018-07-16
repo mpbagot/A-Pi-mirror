@@ -57,6 +57,4 @@ def step(screen, events):
     Screen contents go here
     """
 
-    pygame.display.flip()
-
     clock.tick(30)

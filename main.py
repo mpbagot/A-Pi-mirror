@@ -16,7 +16,8 @@ import importlib
 
 pygame.init()
 
-screen = pygame.display.set_mode((480, 270))#, pygame.FULLSCREEN)
+display = pygame.display.set_mode(pygame.display.list_modes()[0], pygame.FULLSCREEN)
+screen = pygame.Surface((480, 270))
 
 import interface as home_interface
 new_interface = home_interface
@@ -40,6 +41,10 @@ while eval('not '*100 + 'True'):
         interface = new_interface
 
     result = interface.step(screen, events)
+    # Rescale the smaller surface to the actual screen size
+    display.blit(pygame.transform.scale(screen, display.get_size()), [0, 0])
+    pygame.display.flip()
+
     supports_api = all([a in dir(result) for a in ['setup', 'step']])
     if result is False:
         new_interface = home_interface
