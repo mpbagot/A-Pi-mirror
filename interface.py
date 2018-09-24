@@ -40,7 +40,7 @@ class Box:
 pygame.init()
 
 # Font type and size
-font = pygame.font.Font('OCRAEXT.ttf', 18)
+font = pygame.font.Font('resources/font/ocraext.ttf', 18)
 # Declares clock
 clock = pygame.time.Clock()
 
@@ -50,7 +50,7 @@ OUTLINE = (252,  79,   0)
 BLUE_F =  ( 23,  96, 109)
 TEXT_M =  (255, 255, 255)
 
-BG = pygame.image.load('BG_Main.png').convert()
+BG = pygame.image.load('resources/textures/bg_main.png').convert()
 
 def setup():
     global boxes
@@ -68,7 +68,6 @@ def setup():
         try:
             module = importlib.import_module("modules."+line)
             module = importlib.reload(module)
-            print(module)
             programs.append((module.NAME, module))
         except ImportError:
             print(line, 'failed to import')
@@ -91,7 +90,7 @@ def step(screen, events):
     global boxes
     global selection
     global scroll_amount
-    
+
     for event in events:
         if event.type == pygame.QUIT:
             pygame.quit()

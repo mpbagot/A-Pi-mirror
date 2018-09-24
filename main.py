@@ -16,7 +16,7 @@ import importlib
 
 pygame.init()
 
-display = pygame.display.set_mode(pygame.display.list_modes()[0], pygame.FULLSCREEN)
+display = pygame.display.set_mode(pygame.display.list_modes()[0])#, pygame.FULLSCREEN)
 screen = pygame.Surface((480, 270))
 
 pygame.mouse.set_visible(False)
@@ -25,7 +25,7 @@ import interface as home_interface
 new_interface = home_interface
 interface = None
 
-while eval('not '*100 + 'True'):
+while True:
     events = list(pygame.event.get())
     for e, event in enumerate(events):
         if event.type == pygame.QUIT:

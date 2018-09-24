@@ -6,7 +6,7 @@ sys.path.append('../')
 
 pygame.init()
 # Font type and size
-font = pygame.font.Font('OCRAEXT.ttf', 9)
+font = pygame.font.Font('resources/font/ocraext.ttf', 9)
 # Declares clock
 clock = pygame.time.Clock()
 
@@ -17,7 +17,7 @@ BLUE_F =  ( 23,  96, 109)
 TEXT_M =  (255, 255, 255)
 
 # Main background
-BG = pygame.image.load('BG_Main.png').convert()
+BG = pygame.image.load('resources/textures/bg_main.png').convert()
 
 NAME = 'INSERT MODULE NAME HERE'
 

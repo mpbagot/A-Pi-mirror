@@ -47,8 +47,8 @@ class Mbox:
 
 pygame.init()
 # Font type and size
-font = pygame.font.Font('OCRAEXT.ttf', 9)
-font1 = pygame.font.Font('OCRAEXT.ttf', 20)
+font = pygame.font.Font('resources/font/ocraext.ttf', 9)
+font1 = pygame.font.Font('resources/font/ocraext.ttf', 20)
 
 # Declares clock
 clock = pygame.time.Clock()
@@ -57,7 +57,7 @@ BLUE_IO = ( 23,  53, 109)
 OUTLINE = (252,  79,   0)
 BLUE_F =  ( 23,  96, 109)
 TEXT_M =  (255, 255, 255)
-BG = pygame.image.load('BG_Main.png').convert()
+BG = pygame.image.load('resources/textures/bg_main.png').convert()
 OV = pygame.image.load('modules/Overlays/Musicalpha.png').convert_alpha()
 
 

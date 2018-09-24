@@ -6,7 +6,7 @@ sys.path.append('../')
 
 pygame.init()
 # Font type and size
-font = pygame.font.Font('OCRAEXT.ttf', 10)
+font = pygame.font.Font('resources/font/ocraext.ttf', 10)
 # Declares clock
 clock = pygame.time.Clock()
 
@@ -17,7 +17,7 @@ BLUE_F =  ( 23,  96, 109)
 TEXT_M =  (255, 255, 255)
 
 # Main background
-BG = pygame.image.load('BG_Main.png').convert()
+BG = pygame.image.load('resources/textures/bg_main.png').convert()
 txt = "Welcome to the A-Pi \n This system comes standard with a music player module. \n The music player supports only \'WAV\' and/or \'OGG\' formats. \n To use the music player, up/down directional keys change selection. \n Left/right directional keys change volume and backspace plays/pauses. \n To return home use the \'h\' key \n NOTE keys cannot be held down for continuous input."
 NAME = 'Help'
 class helpbox:

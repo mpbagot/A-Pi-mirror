@@ -8,7 +8,7 @@ NAME = 'Radio'
 def run(screen):
     pygame.init()
     # Font type and size
-    font = pygame.font.Font('OCRAEXT.ttf', 9)
+    font = pygame.font.Font('resources/font/ocraext.ttf', 9)
     # Declares clock
     clock = pygame.time.Clock()
 
@@ -19,7 +19,7 @@ def run(screen):
     TEXT_M =  (255, 255, 255)
 
     # Main background
-    BG = pygame.image.load('BG_Main.png').convert()
+    BG = pygame.image.load('resources/textures/bg_main.png').convert()
 
     while True:
         for event in pygame.event.get():
