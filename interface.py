@@ -5,6 +5,9 @@ import math
 import io
 import sys
 import importlib
+import os
+
+import util
 
 class Box:
     def __init__(self, text, rect):#x, y, w, h):
@@ -63,14 +66,18 @@ def setup():
     selection = [0, 0]
 
     programs = []
-    for line in open('modules/programs.txt'):
-        line = line.strip()
-        try:
-            module = importlib.import_module("modules."+line)
-            module = importlib.reload(module)
-            programs.append((module.NAME, module))
-        except ImportError:
-            print(line, 'failed to import')
+    files = os.listdir('modules')
+    for line in files:
+        if line.endswith('.py'):
+            try:
+                module = importlib.import_module('modules.' + line[:-3])
+                module = importlib.reload(module)
+                if util.is_valid_module(module):
+                    programs.append((module.NAME, module))
+                else:
+                    raise ImportError
+            except ImportError:
+                print(line, 'failed to import.')
 
     boxes = []
     programs.sort()

@@ -21,6 +21,9 @@ BG = pygame.image.load('resources/textures/bg_main.png').convert()
 
 NAME = 'INSERT MODULE NAME HERE'
 
+# NOTE: Remove this for your real module!
+hidden_module = True
+
 def setup():
     '''
     Set up any variables for this instance of the interface.
