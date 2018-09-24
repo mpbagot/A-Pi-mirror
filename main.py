@@ -2,6 +2,8 @@
 import hashlib
 import socket
 
+import util
+
 ## Figure out if this is the correct device or not
 is_rpi = '101c18234e9c936f8069b8de1a9e959ad0ba4af19a0cc8adb3f4c62f8de8ff1a' == hashlib.sha256(socket.gethostname().encode()).hexdigest()
 if is_rpi:
@@ -47,11 +49,10 @@ while True:
     display.blit(pygame.transform.scale(screen, display.get_size()), [0, 0])
     pygame.display.flip()
 
-    supports_api = all([a in dir(result) for a in ['setup', 'step']])
     if result is False:
         new_interface = home_interface
     elif result.__class__.__name__ == 'module':
-        if supports_api:
+        if util.is_valid_module(result):
             new_interface = result
         else:
             print('[ERROR] Module doesn\'t implement program API correctly.')
